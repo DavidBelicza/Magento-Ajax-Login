@@ -1,0 +1,63 @@
+/**
+ * YouAMA.com
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA that is bundled with this package
+ * on http://youama.com/freemodule-license.txt.
+ *
+ /****************************************************************************
+ *                      MAGENTO EDITION USAGE NOTICE                         *
+ ****************************************************************************/
+ /* This package designed for Magento Community edition. Developer(s) of
+ * YouAMA.com does not guarantee correct work of this extension on any other
+ * Magento edition except Magento Community edition. YouAMA.com does not 
+ * provide extension support in case of incorrect edition usage.
+ /****************************************************************************
+ *                               DISCLAIMER                                  *
+ ****************************************************************************/
+ /* Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future.
+ *****************************************************
+ * @category   Youama
+ * @package    Youama_Ajaxlogin
+ * @copyright  Copyright (c) 2012-2013 YouAMA.com (http://www.youama.com)
+ * @license    http://youama.com/freemodule-license.txt
+ */
+
+.youama-ajaxlogin-cover { display:none; background:#fff; opacity:0.5; -moz-opacity:0.5; filter:alpha(opacity = 50); left:0; top:0; width:100%; height:100%; float:left; position:fixed; z-index:9997; }
+.youama-showhideme { display:none; }
+
+.youama-register-window { 
+    display:none; width:400px; background-color:#fff; position:fixed; margin-top:0; top:150px; left:50%; margin-left:-200px; z-index:9998; 
+    border-radius:5px; -o-border-radius:103px; -ms-border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; 
+    box-shadow:rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
+}
+
+.youama-login-window { 
+    display:none; width:400px; background-color:#fff; position:fixed; margin-top:0; top:300px; left:50%; margin-left:-200px; z-index:9998; 
+    border-radius:5px; -o-border-radius:103px; -ms-border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; 
+    box-shadow:rgba(0, 0, 0, 0.2) 0px 0px 10px 0px;
+}
+
+.youama-window-outside { margin:20px; position:relative; }
+.youama-close { right:0; top:0; width:32px; height:32px; cursor:pointer; position:absolute; }
+.youama-window-title h3 { margin:0; color:#e76200; }
+.youama-window-box { }
+.youama-window-subtitle p { margin:20px 0 0 0; float:left; width:100%; font-size:14px; font-weight:bold; color:#aaa; }
+.youama-window-box .input-fly { padding:5px 0; float:left; width:100% }
+.youama-window-box .input-fly label { font-size:14px; float:left; width:50%; line-height:26px; }
+.youama-window-box .input-fly input { font-size:14px; float:right; padding:3px; color:#aaa; }
+.youama-ajaxlogin-error { float:right; width:200px; color:#eb340a; }
+.err-licence { float:left; }
+.err-newsletter { float:left; }
+.youama-window-box .input-fly-checkbox input { float:left; margin:7px 7px 0 0; }
+.youama-window-box .input-fly-checkbox label { font-size:12px; width:auto; }
+.youama-window-box .input-fly .youama-ajaxlogin-error { text-align:right; }
+.youama-window-box .input-fly-checkbox .youama-ajaxlogin-error { text-align:left; float:left; }
+.youama-window-box .box-contents { float:right; margin-bottom:20px; }
+.youama-window-box .box-contents-button { width:100%; margin-top:20px; }
+.youama-window-box .box-contents-button button { float:right; }
+.youama-window-box .youama-forgot-password { float:left; margin-top:10px; }
+
+.youama-ajaxlogin-loader { background-image:url('../../../images/youama/ajaxlogin/loader.gif'); background-repeat:no-repeat; background-position:center center; width:220px; height:20px; position:fixed; display:none; margin-left:-110px; margin-top:-10px; top:35%; left:50%; z-index:9999; }

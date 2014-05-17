@@ -1,0 +1,592 @@
+<?php
+
+/**
+ * YouAMA.com
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA that is bundled with this package
+ * on http://youama.com/freemodule-license.txt.
+ *
+ /****************************************************************************
+ *                      MAGENTO EDITION USAGE NOTICE                         *
+ ****************************************************************************/
+ /* This package designed for Magento Community edition. Developer(s) of
+ * YouAMA.com does not guarantee correct work of this extension on any other
+ * Magento edition except Magento Community edition. YouAMA.com does not 
+ * provide extension support in case of incorrect edition usage.
+ /****************************************************************************
+ *                               DISCLAIMER                                  *
+ ****************************************************************************/
+ /* Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future.
+ *****************************************************
+ * @category   Youama
+ * @package    Youama_Ajaxlogin
+ * @copyright  Copyright (c) 2012-2013 YouAMA.com (http://www.youama.com)
+ * @license    http://youama.com/freemodule-license.txt
+ */
+
+?>
+
+<?php if (Mage::helper('customer')->isLoggedIn() != true) : ?>
+
+    <div class="youama-ajaxlogin-cover">
+    </div>
+
+    <div class="youama-ajaxlogin-loader">
+    </div>
+
+    <div class="youama-login-window">
+        <div class="youama-window-outside">
+            <div class="youama-window-inside">
+                <div class="youama-login-close youama-close">
+                    <?php echo $this->__('Close') ?>
+                </div>
+                <div class="youama-window-title">
+                    <h3>
+                        <?php echo $this->__('Login') ?>
+                    </h3>
+                </div>
+                
+                <div class="youama-window-box first">
+                    <div class="youama-window-content">
+                        <div class="input-fly youama-showhideme">
+                            <label for="youama-email"><?php echo $this->__('E-mail address') ?> <span>*</span></label>
+                            <input type="text" placeholder="<?php echo $this->__('E-mail address') ?>" id="youama-email" name="youama-email" value="" />
+                            <div class="youama-ajaxlogin-error err-email err-noemail err-wrongemail err-wronglogin"></div>
+                        </div>
+                        <div class="input-fly youama-showhideme">
+                            <label for="youama-password"><?php echo $this->__('Password') ?> <span>*</span></label>
+                            <input type="password" placeholder="<?php echo $this->__('Password') ?>" id="youama-password" name="youama-password" value="" />
+                            <div class="youama-ajaxlogin-error err-password err-dirtypassword err-nopassword err-longpassword"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="youama-window-box last">
+                    <div class="youama-window-content box-contents box-contents-button youama-showhideme">
+                        <span class="youama-forgot-password">
+                            <a href="<?php echo Mage::getBaseUrl() ?>customer/account/forgotpassword/"><?php echo $this->__('Forgot Password') ?></a>
+                        </span>
+                        <button type="button" class="button btn-proceed-checkout btn-checkout youama-ajaxlogin-button">
+                            <span>
+                                <span>
+                                    <?php echo $this->__('Login') ?>
+                                </span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="youama-register-window">
+        <div class="youama-window-outside">
+            <div class="youama-window-inside">
+                <div class="youama-register-close youama-close">
+                    <?php echo $this->__('Close') ?>
+                </div>
+                <div class="youama-window-title">
+                    <h3>
+                        <?php echo $this->__('Registration') ?>
+                    </h3>
+                </div>
+
+                <div class="youama-window-box first">
+                    <div class="youama-window-subtitle youama-showhideme">
+                        <p><?php echo $this->__('Profile Informations') ?></p>
+                    </div>
+                    <div class="youama-window-content">
+                        <div class="input-fly youama-showhideme">
+                            <label for="youama-firstname"><?php echo $this->__('First Name') ?> <span>*</span></label>
+                            <input type="text" placeholder="<?php echo $this->__('First Name') ?>" id="youama-firstname" name="youama-firstname" value="" />
+                            <div class="youama-ajaxlogin-error err-firstname err-nofirstname err-dirtyfirstname"></div>
+                        </div>
+                        <div class="input-fly youama-showhideme">
+                            <label for="youama-lastname"><?php echo $this->__('Last Name') ?> <span>*</span></label>
+                            <input type="text" placeholder="<?php echo $this->__('Last Name') ?>" id="youama-lastname" name="youama-lastname" value="" />
+                            <div class="youama-ajaxlogin-error err-lastname err-nolastname err-dirtylastname"></div>
+                        </div>
+                        <div class="input-fly input-fly-checkbox youama-showhideme">
+                            <input type="checkbox" id="youama-newsletter" name="youama-newsletter" value="ok" />
+                            <label for="youama-newsletter"><?php echo $this->__('Subscribe to Newsletter') ?></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youama-window-box second">
+                    <div class="youama-window-subtitle youama-showhideme">
+                        <p><?php echo $this->__('Login Datas') ?></p>
+                    </div>
+                    <div class="youama-window-content">
+                        <div class="input-fly youama-showhideme">
+                            <label for="youama-email"><?php echo $this->__('E-mail address') ?> <span>*</span></label>
+                            <input type="text" placeholder="<?php echo $this->__('E-mail address') ?>" id="youama-email" name="youama-email" value="" />
+                            <div class="youama-ajaxlogin-error err-email err-noemail err-wrongemail err-emailisexist"></div>
+                        </div>
+                        <div class="input-fly youama-showhideme">
+                            <label for="youama-password"><?php echo $this->__('Password') ?> <span>*</span></label>
+                            <input type="password" placeholder="<?php echo $this->__('Password') ?>" id="youama-password" name="youama-password" value="" />
+                            <div class="youama-ajaxlogin-error err-password err-dirtypassword err-nopassword err-shortpassword err-longpassword"></div>
+                        </div>
+                        <div class="input-fly youama-showhideme">
+                            <label for="youama-passwordsecond"><?php echo $this->__('Password confirmation') ?> <span>*</span></label>
+                            <input type="password" placeholder="<?php echo $this->__('Password confirmation') ?>" id="youama-passwordsecond" name="youama-passwordsecond" value="" />
+                            <div class="youama-ajaxlogin-error err-passwordsecond err-nopasswordsecond err-notsamepasswords"></div>
+                        </div>
+                        <div class="input-fly input-fly-checkbox youama-showhideme">
+                            <input type="checkbox" id="youama-licence" name="youama-licence" value="ok" />
+                            <label for="youama-licence"><?php echo $this->__('I accept the') ?> <a href="#" target="_blank"><?php echo $this->__('Terms and Coditions') ?></a></label>
+                            <div class="youama-ajaxlogin-error err-nolicence"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="youama-window-box last">
+                    <div class="youama-window-content box-contents youama-showhideme">
+                        <button type="button" class="button btn-proceed-checkout btn-checkout youama-ajaxlogin-button">
+                            <span>
+                                <span>
+                                    <?php echo $this->__('Register') ?>
+                                </span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="youama_ajaxlogin-temp-error" style="display:none !important;">
+        <div class="ytmpa-nofirstname"><?php echo $this->__('First name is required!') ?></div>
+        <div class="ytmpa-nolastname"><?php echo $this->__('Last name is required!') ?></div>
+        <div class="ytmpa-dirtyfirstname"><?php echo $this->__('First name is not valid!') ?></div>
+        <div class="ytmpa-dirtylastname"><?php echo $this->__('Last name is not valid!') ?></div>
+
+        <div class="ytmpa-wrongemail"><?php echo $this->__('This is not an email address!') ?></div>
+        <div class="ytmpa-noemail"><?php echo $this->__('Email address is required!') ?></div>
+        <div class="ytmpa-emailisexist"><?php echo $this->__('This email is already registered!') ?></div>
+
+        <div class="ytmpa-nopassword"><?php echo $this->__('Password is required!') ?></div>
+        <div class="ytmpa-dirtypassword"><?php echo $this->__('Enter a valid password!') ?></div>
+        <div class="ytmpa-shortpassword"><?php echo $this->__('Please enter 6 or more characters!') ?></div>
+        <div class="ytmpa-longpassword"><?php echo $this->__('Please enter 16 or less characters!') ?></div>
+        <div class="ytmpa-notsamepasswords"><?php echo $this->__('Passwords are not same!') ?></div>
+        <div class="ytmpa-nolicence"><?php echo $this->__('Terms and Conditions are required!') ?></div>
+        
+        <div class="ytmpa-wronglogin"><?php echo $this->__('Email or Password is wrong!') ?></div>
+    </div>
+
+    <script type="text/javascript">
+        //<![CDATA[
+            (function($) {
+                $.fn.youamaAjaxLogin = function(options) {
+
+                    var opts = $.extend({}, $.fn.youamaAjaxLogin.defaults, options);
+
+                    return start();
+
+                    function start() {
+                        removeOriginalJsLocations();
+                        setSizes();
+                        responsiveMaker();
+                        openCloseWindowEvents();
+                        sendEvents();
+                    }
+
+                    function removeOriginalJsLocations(){
+                        $('a[href*="customer/account/create"], a[href*="customer/account/login"], .customer-account-login .new-users button').attr('onclick', 'return false;');
+                    }
+
+                    function openCloseWindowEvents(){
+                        if (opts.autoShowUp == 'yes' && $('.messages').css('display') != 'block'){
+                            animateShowWindow('login');
+                        }
+                        
+                        $('a[href*="customer/account/create"], .new-users button').live('click', function(){
+                            animateShowWindow('register');
+                            return false;
+                        });
+                        
+                        $('a[href*="customer/account/login"]').live('click', function(){
+                            animateShowWindow('login');
+                            return false;
+                        });
+
+                        $('.youama-register-close').live('click', function(){
+                            animateCloseWindow('register');
+                        });
+                        
+                        $('.youama-login-close').live('click', function(){
+                            animateCloseWindow('login');
+                        });
+                    }
+                    
+                    function sendEvents(){
+                        $('.youama-register-window button').live('click', function(){
+                            setDatas('register');
+                            validateDatas('register');
+                            if (opts.errors != ''){
+                                setError(opts.errors, 'register');
+                            }
+                            else{
+                                callAjaxControllerRegistration();
+                            }
+                            return false;
+                        });
+                        
+                        $(document).keypress(function(e) {
+                            if(e.which == 13 && $('.youama-login-window').css('display') == 'block') {
+                                setDatas('login');
+                                validateDatas('login');
+                                if (opts.errors != ''){
+                                    setError(opts.errors, 'login');
+                                }
+                                else{
+                                    callAjaxControllerLogin();
+                                }
+                            }
+                        });
+
+                        $('.youama-login-window button').live('click', function(){
+                            setDatas('login');
+                            validateDatas('login');
+                            if (opts.errors != ''){
+                                setError(opts.errors, 'login');
+                            }
+                            else{
+                                callAjaxControllerLogin();
+                            }
+                            return false;
+                        });
+                    }
+
+                    function animateShowWindow(windowName){
+                        $('.youama-ajaxlogin-cover').fadeIn();
+                        $('.youama-' + windowName + '-window').fadeIn('normal', function(){
+                            $('.youama-' + windowName + '-window .youama-showhideme').each(function(index, domeE){
+                                $(this).delay(index * 50).fadeIn('normal');
+                                setTop(windowName);
+                            });
+                        });
+                    }
+
+                    function animateLoader(windowName, step){
+                        setTop(windowName);
+                        if (step == 'start'){
+                            $('.youama-' + windowName + '-window .youama-ajaxlogin-error').fadeOut();
+                            $('.youama-ajaxlogin-loader').fadeIn();
+                            $('.youama-' + windowName + '-window').animate({opacity : '0.5'});
+                        }
+                        else{
+                            $('.youama-ajaxlogin-loader').fadeOut('normal', function(){
+                                $('.youama-' + windowName + '-window').animate({opacity : '1'});
+                            });
+                        }
+                    }
+
+                    function animateCloseWindow(windowName){
+                        if (opts.stop != true){
+                            $('.youama-ajaxlogin-error').fadeOut();
+
+                            var inputs = $('.youama-' + windowName + '-window .youama-showhideme').nextAll();
+                            var counter = inputs.length;
+
+                            $($('.youama-' + windowName + '-window .youama-showhideme').get().reverse()).each(function(index, domeE){
+                                $(this).delay(index * 50).fadeOut('fast');
+                            });
+
+                            $('.youama-' + windowName + '-window').delay(counter * 50).fadeOut();
+                            $('.youama-ajaxlogin-cover').delay(counter * 50).fadeOut();
+                        }
+                    }
+
+                    function validateDatas(windowName){
+                        opts.errors = '';
+                        
+                        if (windowName == 'register'){
+
+                            if (opts.lastname.length < 1){
+                                opts.errors = opts.errors + 'nolastname,'
+                            }
+
+                            if (opts.firstname.length < 1){
+                                opts.errors = opts.errors + 'nofirstname,'
+                            }
+
+                            if (opts.email.length < 1){
+                                opts.errors = opts.errors + 'noemail,'
+                            }
+                            else if (validateEmail(opts.email) != true){
+                                opts.errors = opts.errors + 'wrongemail,'
+                            }
+
+                            if (opts.password.length < 1){
+                                opts.errors = opts.errors + 'nopassword,'
+                            }
+                            else if (opts.password.length < 6){
+                                opts.errors = opts.errors + 'shortpassword,'
+                            }
+                            else if (opts.password.length > 16){
+                                opts.errors = opts.errors + 'longpassword,'
+                            }
+                            else if (opts.password != opts.passwordsecond){
+                                opts.errors = opts.errors + 'notsamepasswords,'
+                            }
+
+                            if (opts.licence != 'ok'){
+                                opts.errors = opts.errors + 'nolicence,'
+                            }
+                        }
+                        else if (windowName == 'login'){
+                            if (opts.email.length < 1){
+                                opts.errors = opts.errors + 'noemail,'
+                            }
+                            else if (validateEmail(opts.email) != true){
+                                opts.errors = opts.errors + 'wrongemail,'
+                            }
+
+                            if (opts.password.length < 1){
+                                opts.errors = opts.errors + 'nopassword,'
+                            }
+                            else if (opts.password.length > 16){
+                                opts.errors = opts.errors + 'wronglogin,'
+                            }
+                        }
+                    }
+
+                    function validateEmail(emailAddress){
+                        var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+                        if (filter.test(emailAddress)) {
+                            return true;
+                        }
+                        else {
+                            return false;
+                        }
+                    }
+
+                    function setDatas(windowName){
+                        if (windowName == 'register'){
+                            opts.firstname = $('.youama-' + windowName + '-window #youama-firstname').val();
+                            opts.lastname = $('.youama-' + windowName + '-window #youama-lastname').val();
+
+                            if ($('.youama-' + windowName + '-window input[name="youama-newsletter"]:checked').length > 0){
+                                opts.newsletter = 'ok';
+                            }
+                            else{
+                                opts.newsletter = 'no';
+                            }
+
+                            opts.email = $('.youama-' + windowName + '-window #youama-email').val();
+                            opts.password = $('.youama-' + windowName + '-window #youama-password').val();
+                            opts.passwordsecond = $('.youama-' + windowName + '-window #youama-passwordsecond').val();
+
+                            if ($('.youama-' + windowName + '-window input[name="youama-licence"]:checked').length > 0){
+                                opts.licence = 'ok';
+                            }
+                            else{
+                                opts.licence = 'no';
+                            }
+                        }
+                        else if (windowName == 'login'){
+                            opts.email = $('.youama-' + windowName + '-window #youama-email').val();
+                            opts.password = $('.youama-' + windowName + '-window #youama-password').val();
+                        }
+                    }
+
+                    function setError(errors, windowName){
+                        $('.youama-' + windowName + '-window .youama-ajaxlogin-error').text('');
+                        $('.youama-' + windowName + '-window .youama-ajaxlogin-error').hide();
+
+                        var errorArr = new Array();
+                        errorArr = errors.split(',');
+
+                        var length = errorArr.length - 1;
+
+                        for (var i = 0; i < length; i++) {
+                            var errorText = $('.ytmpa-' + errorArr[i]).text();
+
+                            $('.youama-' + windowName + '-window .err-' + errorArr[i]).text(errorText);
+                        }
+
+                        $('.youama-' + windowName + '-window .youama-ajaxlogin-error').fadeIn();
+                    }
+
+                    function callAjaxControllerRegistration(){
+                        if (opts.stop != true){
+
+                            opts.stop = true;
+
+                            animateLoader('register', 'start');
+
+                            var ajaxRegistration = jQuery.ajax({
+                                url: '<?php echo $this->getUrl('youama_ajaxlogin/ajax/index') ?>',
+                                type: 'POST',
+                                data: {
+                                    ajax : 'register',
+                                    firstname : opts.firstname,
+                                    lastname : opts.lastname,
+                                    newsletter : opts.newsletter,
+                                    email : opts.email,
+                                    password : opts.password,
+                                    passwordsecond : opts.passwordsecond,
+                                    licence : opts.licence
+                                },
+                                dataType: "html"
+                            });
+                            ajaxRegistration.done(function(msg) {
+                                if (msg != 'success'){
+                                    setError(msg, 'register');
+                                }
+                                else{
+                                    opts.stop = false;
+                                    animateCloseWindow('register');
+                                    window.location = opts.profileUrl;
+                                }
+                                animateLoader('register', 'stop');
+                                opts.stop = false;
+                            });
+                            ajaxRegistration.fail(function(jqXHR, textStatus, errorThrown) {
+                                opts.stop = false;
+                                animateLoader('register', 'stop');
+                            });
+                        }
+                    }
+                
+                    function callAjaxControllerLogin(){
+                        if (opts.stop != true){
+
+                            opts.stop = true;
+
+                            animateLoader('login', 'start');
+
+                            var ajaxRegistration = jQuery.ajax({
+                                url: '<?php echo $this->getUrl('youama_ajaxlogin/ajax/index') ?>',
+                                type: 'POST',
+                                data: {
+                                    ajax : 'login',
+                                    email : opts.email,
+                                    password : opts.password
+                                },
+                                dataType: "html"
+                            });
+                            ajaxRegistration.done(function(msg) {
+                                if (msg != 'success'){
+                                    setError(msg, 'login');
+                                }
+                                else{
+                                    opts.stop = false;
+                                    animateCloseWindow('login');
+                                    window.location = opts.profileUrl;
+                                }
+                                animateLoader('login', 'stop');
+                                opts.stop = false;
+                            });
+                            ajaxRegistration.fail(function(jqXHR, textStatus, errorThrown) {
+                                opts.stop = false;
+                                animateLoader('login', 'stop');
+                            });
+                        }
+                    }
+                    
+                    function responsiveMaker(){
+                        var position = '';
+                        
+                        if ($.browser.msie && $.browser.version < 9) {
+                            position = 'absolute';
+                            $('.youama-ajaxlogin-cover').css('opacity', '0.5');
+                        }
+                        else{
+                            position = 'fixed';
+                        }
+                        
+                        $(window).resize(function(){
+                            setSizes(position);
+                        });
+                    }
+                    
+                    function setSizes(position){
+                        var winHeight = $(window).height();
+                        
+                        if (winHeight < 300){
+                            $('.youama-login-window').css('top', '50px');
+                            $('.youama-login-window').css('position', 'absolute');
+                            setTop('login');
+                        }
+                        else{
+                            $('.youama-login-window').css('position', position);
+                            
+                            if (winHeight < 400){
+                                $('.youama-login-window').css('top', '100px');
+                                setTop('login');
+                            }
+                            else if (winHeight < 600){
+                                $('.youama-login-window').css('top', '200px');
+                                setTop('login');
+                            }
+                            else{
+                                $('.youama-login-window').css('top', '300px');
+                                setTop('login');
+                            }
+                        }
+                        
+                        if (winHeight < 600){
+                            $('.youama-register-window').css('top', '50px');
+                            $('.youama-register-window').css('position', 'absolute');
+                            setTop('register');
+                        }
+                        else{
+                            $('.youama-register-window').css('position', position);
+                            
+                            if (winHeight < 800){
+                                $('.youama-register-window').css('top', '100px');
+                                setTop('register');
+                            }
+                            else if (winHeight < 1000){
+                                $('.youama-register-window').css('top', '200px');
+                                setTop('register');
+                            }
+                        }
+                    }
+                    
+                    function setTop(windowName){
+                         if ($('.youama-' + windowName + '-window').css('display') == 'block'){
+                            var height = $('.youama-' + windowName + '-window').height();
+                            var marginTop = $('.youama-' + windowName + '-window').css('top').replace('px', '');
+                            var theTop = (parseInt(height) / 2) + parseInt(marginTop);
+                            $('.youama-ajaxlogin-loader').css('top', parseInt(theTop) + 'px');
+                            $('.youama-ajaxlogin-loader').css('position', $('.youama-' + windowName + '-window').css('position'));
+                         }
+                    }
+                };
+
+
+                $.fn.youamaAjaxLogin.defaults = {
+                    stop : false,
+                    profileUrl : '<?php echo Mage::getBaseUrl() ?>customer/account/',
+                    autoShowUp : '<?php echo $autoShowUp = (isset($_GET['yregister'])) ? 'yes' : 'no' ?>',
+                    errors : '',
+                    firstname : '',
+                    lastname : '',
+                    newsletter : 'no',
+                    email : '',
+                    password : '',
+                    passwordsecond : '',
+                    licence : 'no'
+                };
+
+            })(jQuery);
+
+            jQuery(document).ready(function(){
+                jQuery().youamaAjaxLogin();
+            });
+        //]]>
+    </script>
+
+<?php endif ?>

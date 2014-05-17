@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/**
+ * YouAMA.com
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA that is bundled with this package
+ * on http://youama.com/freemodule-license.txt.
+ *
+ /****************************************************************************
+ *                      MAGENTO EDITION USAGE NOTICE                         *
+ ****************************************************************************/
+ /* This package designed for Magento Community edition. Developer(s) of
+ * YouAMA.com does not guarantee correct work of this extension on any other
+ * Magento edition except Magento Community edition. YouAMA.com does not 
+ * provide extension support in case of incorrect edition usage.
+ /****************************************************************************
+ *                               DISCLAIMER                                  *
+ ****************************************************************************/
+ /* Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future.
+ *****************************************************
+ * @category   Youama
+ * @package    Youama_Ajaxlogin
+ * @copyright  Copyright (c) 2012-2013 YouAMA.com (http://www.youama.com)
+ * @license    http://youama.com/freemodule-license.txt
+ */
+-->
+
+<layout version="0.1.0">
+    <default>        
+        <reference name="head">
+            <action ifconfig="youamaajaxlogin/settings/power" method="addCss"><stylesheet>css/youama/ajaxlogin/ajaxlogin.css</stylesheet></action>
+            <action ifconfig="youamaajaxlogin/settings/jquery" method="addJs"><script>youama/ajaxlogin/jquery-1-7-1.js</script></action>
+        </reference>
+
+        <reference name="content">
+            <block ifconfig="youamaajaxlogin/settings/power" type="youama_ajaxlogin/ajaxlogin" name="youamaajaxlogin" as="youamaajaxlogin">
+                <action ifconfig="youamaajaxlogin/settings/power" method="setTemplate">
+                    <template>youama/ajaxlogin/ajaxlogin.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </default>
+    
+    <customer_logged_out>
+        <reference name="top.links">
+            <action ifconfig="youamaajaxlogin/settings/power" method="removeLinkByUrl"><url helper="customer/getAccountUrl"/></action>
+            <action ifconfig="youamaajaxlogin/settings/power" method="addLink" translate="label title"><label>Register</label><url>customer/account/create</url><title>Register</title><prepare>true</prepare><urlParams/><position>100</position></action>
+        </reference>
+    </customer_logged_out>
+    
+    <!--ajaxlogin/ajax/index-->
+    <youama_ajaxlogin_index_index ifconfig="youamaajaxlogin/settings/power">
+    </youama_ajaxlogin_index_index>
+</layout>

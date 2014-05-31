@@ -192,6 +192,7 @@
         //<![CDATA[
             jQuery(document).ready(function(){
                 jQuery().youamaAjaxLogin({
+                    redirection : '<?php echo $this->isRedirectToProfile() ?>',
                     profileUrl : '<?php echo Mage::getBaseUrl() ?>customer/account/',
                     autoShowUp : '<?php echo $autoShowUp = (isset($_GET['yregister'])) ? 'yes' : 'no' ?>',
                     controllerUrl : '<?php echo $this->getUrl('youama_ajaxlogin/ajax/index') ?>'

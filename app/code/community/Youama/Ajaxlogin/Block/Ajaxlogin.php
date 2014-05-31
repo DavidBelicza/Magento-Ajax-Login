@@ -28,10 +28,22 @@
  */
 
 /**
- * Empty block class for ajaxlogin view.
+ * Block class for ajaxlogin view.
  * Class Youama_Ajaxlogin_Block_Ajaxlogin
  * @author doveid
  */
 class Youama_Ajaxlogin_Block_Ajaxlogin extends Mage_Core_Block_Template
 {
+    /**
+     * Retrieve string 1 if Redirection to profile is YES on system config page.
+     * @return string
+     */
+    public function isRedirectToProfile()
+    {
+        if (Mage::getStoreConfig('youamaajaxlogin/settings/redirection')) {
+            return '1';
+        }
+
+        return '0';
+    }
 }

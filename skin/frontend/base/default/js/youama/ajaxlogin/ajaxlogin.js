@@ -91,7 +91,7 @@
                 // Close
                 if ($('.youama-login-window').css('display') != 'none'
                     || $('.youama-register-window').css('display') != 'none') {
-                    animateCloseWindow('login');
+                    animateCloseWindow('login', false);
                 // Open
                 } else {
                     animateShowWindow('login');
@@ -107,13 +107,13 @@
                 // Close Register window and open Login window
                 if ($(this).attr('id') == 'y-to-login') {
                     animateTop();
-                    animateCloseWindow('register');
+                    animateCloseWindow('register', false);
                     animateShowWindow('login');
 
                 // Open Login window and close Register window
                 } else {
                     animateTop();
-                    animateCloseWindow('login');
+                    animateCloseWindow('login', false);
                     animateShowWindow('register');
                 }
             });
@@ -121,7 +121,7 @@
             $('a[href*="customer/account/create"], .new-users button')
                 .on('click', function() {
                 $('.skip-links .skip-account').trigger('click');
-                animateCloseWindow('login');
+                animateCloseWindow('login', false);
                 animateShowWindow('register');
                 return false;
             });
@@ -211,10 +211,15 @@
          * Close windows.
          * @param string windowName
          */
-        function animateCloseWindow(windowName) {
+        function animateCloseWindow(windowName, quickly) {
             if (opts.stop != true){
-                $('.youama-ajaxlogin-error').fadeOut();
-                $('.youama-' + windowName + '-window').slideUp();
+                if (quickly == true) {
+                    $('.youama-' + windowName + '-window').hide();
+                    $('.youama-ajaxlogin-error').hide();
+                } else {
+                    $('.youama-ajaxlogin-error').fadeOut();
+                    $('.youama-' + windowName + '-window').slideUp();
+                }
             }
         }
 
@@ -404,9 +409,13 @@
                     // If everything are OK
                     } else {
                         opts.stop = false;
-                        animateCloseWindow('register');
-                        // Redirect to profile
-                        window.location = opts.profileUrl;
+                        animateCloseWindow('register', false);
+                        // Redirect
+                        if (opts.redirection == '1') {
+                            window.location = opts.profileUrl;
+                        } else {
+                            window.location.reload();
+                        }
                     }
                     animateLoader('register', 'stop');
                     opts.stop = false;
@@ -450,9 +459,13 @@
                     // If everything are OK
                     } else {
                         opts.stop = false;
-                        animateCloseWindow('login');
-                        // Redirect to profile.
-                        window.location = opts.profileUrl;
+                        animateCloseWindow('login', false);
+                        // Redirect
+                        if (opts.redirection == '1') {
+                            window.location = opts.profileUrl;
+                        } else {
+                            window.location.reload();
+                        }
                     }
                     animateLoader('login', 'stop');
                     opts.stop = false;
@@ -488,8 +501,8 @@
         function closeInClose() {
             if ($('.page-header-container #header-account')
                 .hasClass('skip-active') != true) {
-                animateCloseWindow('login');
-                animateCloseWindow('register');
+                animateCloseWindow('login', true);
+                animateCloseWindow('register', true);
             }
         }
     };
@@ -497,6 +510,7 @@
     /**
      * Property list.
      * @type {{
+     *      redirection: string,
      *      windowSize: string,
      *      stop: boolean,
      *      controllerUrl: string,
@@ -513,6 +527,7 @@
      * }}
      */
     $.fn.youamaAjaxLogin.defaults = {
+        redirection : '0',
         windowSize : '',
         stop : false,
         controllerUrl : '',

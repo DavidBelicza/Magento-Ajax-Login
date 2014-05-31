@@ -32,7 +32,7 @@
 <config>
     <modules>
         <Youama_Ajaxlogin>
-            <version>2.0.0</version>
+            <version>2.0.1</version>
         </Youama_Ajaxlogin>
     </modules>
     <global>
@@ -88,6 +88,7 @@
                 <power>1</power>
                 <jquery>0</jquery>
                 <jqueryui>1</jqueryui>
+                <redirection>0</redirection>
             </settings>
         </youamaajaxlogin>
     </default>

@@ -44,8 +44,6 @@
         function start() {
             // Add windows from Ajaxlogin view to RWD dropdown
             replaceAjaxWindows();
-            // Close ajax window after dropdown is closed
-            autoClose();
             // Disable links what are linked to login or register pages
             removeOriginalJsLocations();
             // Open and close windows
@@ -91,7 +89,7 @@
                 // Close
                 if ($('.youama-login-window').css('display') != 'none'
                     || $('.youama-register-window').css('display') != 'none') {
-                    animateCloseWindow('login', false);
+                    animateCloseWindow('login', false, false);
                 // Open
                 } else {
                     animateShowWindow('login');
@@ -107,13 +105,13 @@
                 // Close Register window and open Login window
                 if ($(this).attr('id') == 'y-to-login') {
                     animateTop();
-                    animateCloseWindow('register', false);
+                    animateCloseWindow('register', false, false);
                     animateShowWindow('login');
 
                 // Open Login window and close Register window
                 } else {
                     animateTop();
-                    animateCloseWindow('login', false);
+                    animateCloseWindow('login', false, false);
                     animateShowWindow('register');
                 }
             });
@@ -121,10 +119,20 @@
             $('a[href*="customer/account/create"], .new-users button')
                 .on('click', function() {
                 $('.skip-links .skip-account').trigger('click');
-                animateCloseWindow('login', false);
+                animateCloseWindow('login', false, false);
                 animateShowWindow('register');
                 return false;
             });
+            // Close login window by user
+            $('.youama-login-window .close').click(function() {
+                animateCloseWindow('login', true, true);
+            });
+            // Close register window by user
+            $('.youama-register-window .close').click(function() {
+                animateCloseWindow('register', true, true);
+            });
+            // Close ajax window after drop down is closed
+            autoClose();
         }
 
         /**
@@ -210,15 +218,25 @@
         /**
          * Close windows.
          * @param string windowName
+         * @param bool quickly Close without animation.
+         * @param bool closeParent Close the parent drop down
          */
-        function animateCloseWindow(windowName, quickly) {
+        function animateCloseWindow(windowName, quickly, closeParent) {
             if (opts.stop != true){
                 if (quickly == true) {
                     $('.youama-' + windowName + '-window').hide();
-                    $('.youama-ajaxlogin-error').hide();
+                    $('.youama-ajaxlogin-error').hide(function() {
+                        if (closeParent) {
+                            $('#header-account').removeClass('skip-active');
+                        }
+                    });
                 } else {
                     $('.youama-ajaxlogin-error').fadeOut();
-                    $('.youama-' + windowName + '-window').slideUp();
+                    $('.youama-' + windowName + '-window').slideUp(function() {
+                        if (closeParent) {
+                            $('#header-account').removeClass('skip-active');
+                        }
+                    });
                 }
             }
         }
@@ -409,7 +427,7 @@
                     // If everything are OK
                     } else {
                         opts.stop = false;
-                        animateCloseWindow('register', false);
+                        animateCloseWindow('register', false, true);
                         // Redirect
                         if (opts.redirection == '1') {
                             window.location = opts.profileUrl;
@@ -459,7 +477,7 @@
                     // If everything are OK
                     } else {
                         opts.stop = false;
-                        animateCloseWindow('login', false);
+                        animateCloseWindow('login', false, true);
                         // Redirect
                         if (opts.redirection == '1') {
                             window.location = opts.profileUrl;
@@ -491,7 +509,7 @@
 
             // On click another menu item event
             $('.skip-links a').click(function() {
-                closeInClose()
+                closeInClose();
             });
         }
 
@@ -501,8 +519,8 @@
         function closeInClose() {
             if ($('.page-header-container #header-account')
                 .hasClass('skip-active') != true) {
-                animateCloseWindow('login', true);
-                animateCloseWindow('register', true);
+                animateCloseWindow('login', true, false);
+                animateCloseWindow('register', true, false);
             }
         }
     };

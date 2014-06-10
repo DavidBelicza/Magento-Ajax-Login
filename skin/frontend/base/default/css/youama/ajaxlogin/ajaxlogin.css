@@ -27,6 +27,13 @@
 
 #header-account { position:relative; }
 
+.youama-window-outside { position:relative; }
+.youama-window-outside .close { cursor:pointer; text-align:center; width: 40px;
+    float:right; display: block; color: #636363; text-decoration:none;
+    font-weight:normal; font-size:30px; position:absolute;  top:-13px;
+    right:-10px;
+}
+
 /* Desktop or TV **************************************************************/
 @media only screen and (min-width: 771px) {
     #header-account {

@@ -29,7 +29,7 @@
 /**
  * Handle ajax login and registration.
  * Class Youama_Ajaxlogin_AjaxController
- * @author doveid
+ * @author David Belicza
  */
 class Youama_Ajaxlogin_AjaxController extends Mage_Core_Controller_Front_Action
 {

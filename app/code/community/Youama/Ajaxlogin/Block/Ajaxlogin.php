@@ -29,7 +29,7 @@
 /**
  * Block class for ajaxlogin view.
  * Class Youama_Ajaxlogin_Block_Ajaxlogin
- * @author doveid
+ * @author David Belicza
  */
 class Youama_Ajaxlogin_Block_Ajaxlogin extends Mage_Core_Block_Template
 {

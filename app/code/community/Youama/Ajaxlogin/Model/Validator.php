@@ -29,7 +29,7 @@
 /**
  * Validate user data.
  * Class Youama_Ajaxlogin_Model_Validator
- * @author doveid
+ * @author David Belicza
  */
 class Youama_Ajaxlogin_Model_Validator extends Varien_Object
 {

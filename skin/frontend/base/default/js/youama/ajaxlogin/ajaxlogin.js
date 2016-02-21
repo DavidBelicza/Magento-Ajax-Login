@@ -28,7 +28,7 @@
  * This plugin build on jQuery 1.9+ to use login and Register APIs of Magento CE
  * 1.9+ via ajax on default RWD template package Madison Island.
  * jQuery(TM) youamaAjaxlogin plugin
- * @author doveid
+ * @author David Belicza
  */
 (function($) {
     $.fn.youamaAjaxLogin = function(options) {

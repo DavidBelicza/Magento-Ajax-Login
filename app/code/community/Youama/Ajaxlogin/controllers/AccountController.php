@@ -31,7 +31,7 @@ require_once Mage::getModuleDir('controllers', 'Mage_Customer') . DS . 'AccountC
 /**
  * Override Customer Account controller for disable login and register pages.
  * Class Youama_Ajaxlogin_AccountController
- * @author doveid
+ * @author David Belicza
  * @see Mage_Customer_AccountController
  */
 class Youama_Ajaxlogin_AccountController extends Mage_Customer_AccountController

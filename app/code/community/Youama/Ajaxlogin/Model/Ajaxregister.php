@@ -29,7 +29,7 @@
 /**
  * Register user.
  * Class Youama_Ajaxlogin_Model_Ajaxregister
- * @author doveid
+ * @author David Belicza
  */
 class Youama_Ajaxlogin_Model_Ajaxregister
     extends Youama_Ajaxlogin_Model_Validator
